@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_category_categories",
+  "info": {
+    "displayName": "category",
+    "icon": "command",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "blocks"
+    },
+    "linkpath": {
+      "type": "string"
+    },
+    "linkname": {
+      "type": "string"
+    }
+  }
+}
