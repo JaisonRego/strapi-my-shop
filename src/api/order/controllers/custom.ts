@@ -43,28 +43,31 @@ export default factories.createCoreController(
   "api::order.order",
   ({ strapi }) => ({
     async preTransaction(ctx) {
-      let params = ctx.request.body;
-      console.log(params);
+      try {
+        let params = ctx.request.body;
 
-      const entry = await strapi.entityService.create("api::order.order", {
-        data: {
-          email: params.email,
-          orderId: params.orderId,
-          paymentInfo: params.paymentInfo,
-          transactionId: params.paymentInfo.transactionId,
-          products: Array.isArray(params.products) ? params.products : [],
-          billingAddress: params.address.billingAddress || "",
-          shippingAddress: params.address.shippingAddress || "",
-          name: params.name || "",
-          amount: typeof params.amount === "number" ? params.amount : 0,
-          orderStatus: params.orderStatus || "Pending",
-        },
-      });
+        const entry = await strapi.entityService.create("api::order.order", {
+          data: {
+            email: params.email,
+            orderId: params.orderId,
+            paymentInfo: params.paymentInfo,
+            transactionId: params.paymentInfo.transactionId,
+            products: Array.isArray(params.products) ? params.products : [],
+            billingAddress: params.address.billingAddress || "",
+            shippingAddress: params.address.shippingAddress || "",
+            name: params.name || "",
+            amount: typeof params.amount === "number" ? params.amount : 0,
+            orderStatus: params.orderStatus || "Pending",
+          },
+        });
 
-      const sampleResponse = getSamplePaytmResponse();
-      sampleResponse.documentId = entry.documentId;
+        const sampleResponse = getSamplePaytmResponse();
+        sampleResponse.documentId = entry.documentId;
 
-      return sampleResponse;
+        return sampleResponse;
+      } catch (error) {
+        ctx.throw(500, error);
+      }
     },
 
     async midTransaction(ctx) {
