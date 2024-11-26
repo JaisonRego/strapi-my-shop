@@ -1,0 +1,18 @@
+{
+  "documentId": null,
+  "head": {
+    "responseTimestamp": "1665678901234",
+    "version": "v1",
+    "signature": "b8XyZf6nW4+jh8AqR2Ys1Zk3X+E="
+  },
+  "body": {
+    "resultInfo": {
+      "resultStatus": "S",
+      "resultCode": "0000",
+      "resultMsg": "Success"
+    },
+    "txnToken": "e9aa1ddc-0f93-11ec-82a8-0242ac130003",
+    "isPromoCodeValid": false,
+    "authenticated": true
+  }
+}

@@ -1,23 +1,15 @@
 import { factories } from "@strapi/strapi";
+import fs from "fs";
+import path from "path";
 
-const getSamplePaytmResponse = () => ({
-  documentId: null,
-  head: {
-    responseTimestamp: "1665678901234",
-    version: "v1",
-    signature: "b8XyZf6nW4+jh8AqR2Ys1Zk3X+E=",
-  },
-  body: {
-    resultInfo: {
-      resultStatus: "S",
-      resultCode: "0000",
-      resultMsg: "Success",
-    },
-    txnToken: "e9aa1ddc-0f93-11ec-82a8-0242ac130003",
-    isPromoCodeValid: false,
-    authenticated: true,
-  },
-});
+const getSamplePaytmResponse = () => {
+  const filePath = path.join(
+    __dirname,
+    "../../../../../public/sample_json/sample-paytm-response.json"
+  );
+  const jsonData = fs.readFileSync(filePath, "utf-8");
+  return JSON.parse(jsonData);
+};
 
 export default factories.createCoreController(
   "api::order.order",
@@ -26,6 +18,18 @@ export default factories.createCoreController(
       try {
         let params = ctx.request.body;
 
+        const existingOrder = await strapi.db
+          .query("api::order.order")
+          .findOne({
+            where: { orderId: params.orderId },
+          });
+
+        if (existingOrder) {
+          return ctx.throw(
+            400,
+            `Order with orderId ${params.orderId} already exists.`
+          );
+        }
         const entry = await strapi.entityService.create("api::order.order", {
           data: {
             email: params.email,
@@ -58,9 +62,7 @@ export default factories.createCoreController(
           "api::order.order",
           params.orderId,
           {
-            data: {
-              orderStatus: "Success",
-            },
+            data: { orderStatus: "Success" },
           }
         );
 
@@ -83,9 +85,7 @@ export default factories.createCoreController(
         let params = ctx.query;
 
         const order = await strapi.db.query("api::order.order").findOne({
-          where: {
-            documentId: params.documentId,
-          },
+          where: { documentId: params.documentId },
         });
 
         if (order) {
