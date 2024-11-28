@@ -47,8 +47,9 @@ const validatePreTransaction = ajv.compile(preTransactionSchema);
 export default async function preTransactionValidation(data: any) {
   const valid = validatePreTransaction(data);
   if (!valid) {
-    throw new Error(
-      `Validation failed: ${JSON.stringify(validatePreTransaction.errors)}`
-    );
+    const errors = validatePreTransaction.errors
+      .map((err) => `${err.instancePath || "data"} ${err.message}`)
+      .join(", ");
+    throw new Error(`Validation failed: ${JSON.stringify(errors)}`);
   }
 }

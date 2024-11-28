@@ -60,7 +60,7 @@ export default factories.createCoreController(
 
         const updatedOrder = await strapi.entityService.update(
           "api::order.order",
-          params.orderId,
+          params.documentId,
           {
             data: { orderStatus: "Success" },
           }

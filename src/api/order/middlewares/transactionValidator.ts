@@ -7,13 +7,13 @@ export default (config, { strapi }) => {
     try {
       const { path, request } = ctx;
 
-      if (path.includes("pre-transaction")) {
+      if (path.includes("pretransaction")) {
         // Pre-transaction validation
         await preTransactionValidation(request.body);
-      } else if (path.includes("mid-transaction")) {
+      } else if (path.includes("midtransaction")) {
         // Mid-transaction validation
         await midTransactionValidation(request.body);
-      } else if (path.includes("post-transaction")) {
+      } else if (path.includes("posttransaction")) {
         // Post-transaction validation
         await postTransactionValidation(request.query);
       }
