@@ -1,5 +1,6 @@
 import Ajv from "ajv";
 import ajvFormats from "ajv-formats"; // Import ajv-formats
+import logger from "../../../utils/logger";
 
 const preTransactionSchema = {
   type: "object",
@@ -46,7 +47,10 @@ const validatePreTransaction = ajv.compile(preTransactionSchema);
 
 export default async function preTransactionValidation(data: any) {
   const valid = validatePreTransaction(data);
+  logger.info(preTransactionValidation);
+
   if (!valid) {
+    logger.error("Missing data");
     const errors = validatePreTransaction.errors
       .map((err) => `${err.instancePath || "data"} ${err.message}`)
       .join(", ");
