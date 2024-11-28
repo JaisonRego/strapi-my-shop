@@ -58,13 +58,10 @@ export default factories.createCoreController(
       try {
         let params = ctx.request.body;
 
-        const updatedOrder = await strapi.entityService.update(
-          "api::order.order",
-          params.documentId,
-          {
-            data: { orderStatus: "Success" },
-          }
-        );
+        const updatedOrder = await strapi.documents("api::order.order").update({
+          documentId: params["documentId"],
+          data: { orderStatus: "Success" },
+        });
 
         if (updatedOrder) {
           return ctx.send({

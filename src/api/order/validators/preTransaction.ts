@@ -10,25 +10,37 @@ const preTransactionSchema = {
     paymentInfo: {
       type: "object",
       properties: {
+        paymentMethod: { type: "string" },
         transactionId: { type: "string" },
-        amount: { type: "number" },
       },
-      required: ["transactionId", "amount"],
+      required: ["paymentMethod", "transactionId"],
     },
     products: {
       type: "array",
-      items: { type: "object" },
+      items: {
+        type: "object",
+        properties: {
+          productId: { type: "string" },
+          productName: { type: "string" },
+          quantity: { type: "number", minimum: 1 },
+          price: { type: "number", minimum: 0 },
+        },
+        required: ["productId", "productName", "quantity", "price"],
+      },
+      minItems: 1,
     },
     address: {
       type: "object",
       properties: {
-        billingAddress: { type: "string" },
         shippingAddress: { type: "string" },
+        billingAddress: { type: "string" },
       },
-      required: ["billingAddress", "shippingAddress"],
+      required: ["shippingAddress", "billingAddress"],
     },
     name: { type: "string" },
-    orderStatus: { type: "string" },
+    transactionId: { type: "string" },
+    amount: { type: "number", minimum: 0 },
+    orderStatus: { type: "string", enum: ["Pending", "Success", "Failed"] },
   },
   required: [
     "email",
@@ -37,6 +49,8 @@ const preTransactionSchema = {
     "products",
     "address",
     "name",
+    "transactionId",
+    "amount",
     "orderStatus",
   ],
 };
