@@ -1,61 +1,137 @@
-# 🚀 Getting started with Strapi
 
-Strapi comes with a full featured [Command Line Interface](https://docs.strapi.io/dev-docs/cli) (CLI) which lets you scaffold and manage your project in seconds.
+# 🏪 My Shop – Strapi Backend
 
-### `develop`
+Hi! 👋
+This is my personal **Strapi v5** project that powers the backend for **My Shop**.
+It includes custom APIs, user permissions, logging, and automated testing setup.
 
-Start your Strapi application with autoReload enabled. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-develop)
+---
+
+## ✨ Features
+
+✅ Built with **Strapi 5.4**
+✅ SQLite by default (`better-sqlite3`), can also work with **PostgreSQL** (`pg`)
+✅ Integrated **user permissions** plugin
+✅ **Cloud plugin** ready for deployment
+✅ Server‑side **logging with Winston**
+✅ Configurable via `config/env`
+✅ **Testing setup** with Jest & Supertest (see `tests/` folder)
+
+---
+
+## 📂 Project Structure
 
 ```
+📦 my-shop
+├── config/           # Strapi configuration (admin, API, DB, plugins, env-specific)
+├── coverage/         # Jest test coverage reports
+├── database/         # Database migrations
+├── dist/             # Build output
+├── logs/             # Winston log files (combined/error/exceptions)
+├── public/           # Static assets (robots.txt, uploads, sample JSON)
+├── src/              # Core source (admin, APIs, components, utils)
+├── tests/            # Jest & Supertest tests
+├── types/            # TypeScript generated types
+├── package.json
+└── tsconfig.json
+```
+
+---
+
+## 🚀 Getting Started
+
+### 1️⃣ Install dependencies
+
+```bash
+npm install
+# or
+yarn install
+```
+
+### 2️⃣ Run in development
+
+```bash
 npm run develop
 # or
 yarn develop
 ```
 
-### `start`
-
-Start your Strapi application with autoReload disabled. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-start)
-
-```
-npm run start
-# or
-yarn start
-```
-
-### `build`
-
-Build your admin panel. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-build)
-
-```
-npm run build
-# or
-yarn build
-```
-
-## ⚙️ Deployment
-
-Strapi gives you many possible deployment options for your project including [Strapi Cloud](https://cloud.strapi.io). Browse the [deployment section of the documentation](https://docs.strapi.io/dev-docs/deployment) to find the best solution for your use case.
-
-```
-yarn strapi deploy
-```
-
-## 📚 Learn more
-
-- [Resource center](https://strapi.io/resource-center) - Strapi resource center.
-- [Strapi documentation](https://docs.strapi.io) - Official Strapi documentation.
-- [Strapi tutorials](https://strapi.io/tutorials) - List of tutorials made by the core team and the community.
-- [Strapi blog](https://strapi.io/blog) - Official Strapi blog containing articles made by the Strapi team and the community.
-- [Changelog](https://strapi.io/changelog) - Find out about the Strapi product updates, new features and general improvements.
-
-Feel free to check out the [Strapi GitHub repository](https://github.com/strapi/strapi). Your feedback and contributions are welcome!
-
-## ✨ Community
-
-- [Discord](https://discord.strapi.io) - Come chat with the Strapi community including the core team.
-- [Forum](https://forum.strapi.io/) - Place to discuss, ask questions and find answers, show your Strapi project and get feedback or just talk with other Community members.
-- [Awesome Strapi](https://github.com/strapi/awesome-strapi) - A curated list of awesome things related to Strapi.
+Admin panel: [http://localhost:1337/admin](http://localhost:1337/admin)
 
 ---
 
-<sub>🤫 Psst! [Strapi is hiring](https://strapi.io/careers).</sub>
+## 📦 Available Scripts
+
+| Script            | Description                          |
+| ----------------- | ------------------------------------ |
+| `npm run develop` | Run Strapi in development mode       |
+| `npm run build`   | Build admin UI and backend           |
+| `npm run start`   | Start Strapi in production mode      |
+| `npm run deploy`  | Deploy using Strapi cloud plugin     |
+| `npm run test`    | Run Jest test suite (with Supertest) |
+
+---
+
+## ⚙️ Configuration
+
+All configuration files live in `config/`:
+
+* `admin.ts` – Admin panel settings
+* `api.ts` – API defaults
+* `database.ts` – Database connection (SQLite or PostgreSQL)
+* `plugins.ts` – Plugin configs (Cloud, Users & Permissions)
+* `middlewares.ts` – Custom middlewares
+* `env/` – Environment-specific overrides
+* `server.ts` – Host/port and server-level settings
+
+---
+
+## 🧩 Plugins Used
+
+* **Users & Permissions** – Manage roles and authentication
+* **Cloud** – Deploy easily with Strapi Cloud
+
+---
+
+## 🛠 Testing
+
+This project is set up with **Jest** and **Supertest**.
+
+* Tests live in the `tests/` folder:
+
+  * `tests/api` for API tests
+  * `tests/admin` for admin panel tests
+  * `tests/helpers` for utilities
+  * `tests/index.test.ts` as an entry test
+
+Run tests with:
+
+```bash
+npm run test
+```
+
+Coverage reports will be saved in the `coverage/` folder.
+
+---
+
+## 📌 Requirements
+
+* **Node.js:** `>=18.0.0 <=22.x.x`
+* **npm:** `>=6.0.0` (or Yarn)
+
+---
+
+## ✨ Notes
+
+* **Logs** are saved in the `logs/` folder (`combined.log`, `error.log`, `exceptions.log`).
+* TypeScript support is enabled (`tsconfig.json` & `types/generated`).
+* PostgreSQL support is ready — just update `config/database.ts`.
+
+---
+
+If you want, I can also add:
+✅ Example `.env` setup,
+✅ Deployment instructions (Render, Strapi Cloud, Docker),
+✅ Or a quick start guide for API consumers.
+
+Let me know! 🚀🔥
