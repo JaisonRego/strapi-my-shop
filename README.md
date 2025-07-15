@@ -126,12 +126,3 @@ Coverage reports will be saved in the `coverage/` folder.
 * **Logs** are saved in the `logs/` folder (`combined.log`, `error.log`, `exceptions.log`).
 * TypeScript support is enabled (`tsconfig.json` & `types/generated`).
 * PostgreSQL support is ready — just update `config/database.ts`.
-
----
-
-If you want, I can also add:
-✅ Example `.env` setup,
-✅ Deployment instructions (Render, Strapi Cloud, Docker),
-✅ Or a quick start guide for API consumers.
-
-Let me know! 🚀🔥
